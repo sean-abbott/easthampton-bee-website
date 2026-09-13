@@ -1,4 +1,8 @@
-base_url = "https://easthamptonbees.org"
+# Staging deploy target - NOT the real domain yet. easthamptonbees.org stays
+# on the existing Bluehost/WordPress site until the team decides to cut over,
+# which will need DNS coordination since another person owns that domain.
+# Update this to "https://easthamptonbees.org" at actual cutover time.
+base_url = "https://bees-static.houseofthesol.com"
 title = "Easthampton MA Biodiversity, Environment, and Ecological Sustainability (BEES)"
 compile_sass = false
 build_search_index = false

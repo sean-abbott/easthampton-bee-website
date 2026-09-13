@@ -1,12 +1,29 @@
-Easthampton BEES Committee site (easthamptonbees.org), migrated from WordPress.
-Edited with [beedance-ssg-editor](../beedance-ssg-editor) — point it here with
+Easthampton BEES Committee site, migrated from WordPress. Edited with
+[beedance-ssg-editor](../beedance-ssg-editor) — point it here with
 `just set-site /path/to/easthamptonbees-ssg` from that repo.
 
-No theme is vendored yet — `templates/*.html` are a plain, hand-written first
-pass (see `docs` note below on what's still rough), not a `just add-theme`
-theme. Nothing stops adding a real theme later; these templates would just
-move to `themes/<name>/templates/` and get a `theme = "<name>"` line in
-`config.toml`.
+Dual-licensed: code (templates, scripts, config) under MIT (`LICENSE-CODE`),
+written content under `content/` under CC BY 4.0 (`LICENSE-CONTENT`).
+
+No theme is vendored yet — `templates/*.html` are hand-written (a real green/
+nature color palette and layout, verified WCAG-AAA contrast, but not a
+`just add-theme` theme). Nothing stops adding a real theme later; these
+templates would just move to `themes/<name>/templates/` and get a
+`theme = "<name>"` line in `config.toml`.
+
+# Deployment
+
+Staging deploy: **bees-static.houseofthesol.com**, via Cloudflare Pages **git
+integration** (connected directly to this GitHub repo - Cloudflare's own
+build infrastructure runs `zola build` on every push, no local tooling,
+no wrangler, nothing to run here). Setup process/account context:
+`~/projects/pws/documentation/cloudflare-pages-setup.md`.
+
+**Not on easthamptonbees.org yet.** The real domain stays on the existing
+Bluehost/WordPress site for now - another person owns that domain, so moving
+it will need DNS coordination whenever the team decides to cut over. When
+that happens: update `base_url` in `config.toml` and set up the real domain
+as a Cloudflare Pages custom domain (same process as the staging subdomain).
 
 # Structure
 
@@ -36,8 +53,6 @@ move to `themes/<name>/templates/` and get a `theme = "<name>"` line in
   A few (in `content/blog/september-coffee-and-invasive-removal.md`) point at
   a `wzn.bla.mybluehost.me` *staging* domain specifically - those may not
   stay reachable at all.
-- Visual design is intentionally plain (`templates/base.html`'s inline CSS) -
-  a deliberate "get real content in first" choice, not a bug.
 - The WordPress export's Resources, Events, and Contact pages were dropped
   entirely - they were unedited WordPress/theme starter placeholder content
   (fake address, `hi@example.com`, stock photos, `href="#"` buttons), not
