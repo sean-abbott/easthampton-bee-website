@@ -14,6 +14,14 @@
 <ul class="post-list">
   {% for page in events %}
   <li>
+    {% set_global other_tags = "" %}
+    {% for t in page.taxonomies.tags | default(value=[]) %}
+      {% if t != "event" %}
+        {% if other_tags != "" %}{% set_global other_tags = other_tags ~ ", " %}{% endif %}
+        {% set_global other_tags = other_tags ~ t %}
+      {% endif %}
+    {% endfor %}
+    {% if other_tags != "" %}<span class="post-tags">{{ other_tags }}</span>{% endif %}
     <span class="post-date">{{ page.extra.event_date }}</span>
     <a href="{{ page.permalink }}">{{ page.title }}</a>
     {% if page.extra.event_cancelled %}<span class="cancelled">CANCELED</span>{% endif %}

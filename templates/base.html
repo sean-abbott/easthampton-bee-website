@@ -17,9 +17,14 @@
       --forest: #1b4332;
       --forest-dark: #123024;
       --earth: #6b4226;
+      --gold: #b8860b;
       --border: #c9d6c3;
       --cancelled: #8b2e2e;
       --focus-ring: #1b4332;
+      /* Brand hero band - deliberately fixed across light/dark, not themed */
+      --hero-bg: #1b4332;
+      --hero-bg-alt: #123024;
+      --hero-text: #ffffff;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -30,9 +35,12 @@
         --forest: #8fd9b6;
         --forest-dark: #b7ecd2;
         --earth: #d9b866;
+        --gold: #e0b23c;
         --border: #33402d;
         --cancelled: #e59a9a;
         --focus-ring: #8fd9b6;
+        --hero-bg: #123024;
+        --hero-bg-alt: #0b1f18;
       }
     }
 
@@ -42,18 +50,17 @@
       font-family: "Nunito", Arial, sans-serif;
       font-size: 1.0625rem;
       line-height: 1.65;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 20px 60px;
+      margin: 0;
       background: var(--bg);
       color: var(--text);
     }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
     h1, h2, h3, h4, h5, h6 {
       font-family: "Playfair Display", Georgia, serif;
       color: var(--forest);
       line-height: 1.25;
     }
-    h1 { margin-top: 0.6em; }
 
     a { color: var(--forest); }
     a:hover { color: var(--forest-dark); }
@@ -77,38 +84,64 @@
       top: 12px;
     }
 
-    header.site-header {
-      padding: 28px 0 10px;
+    .hero-band {
+      background: linear-gradient(135deg, var(--hero-bg), var(--hero-bg-alt));
+      padding: 26px 0 0;
     }
-    header.site-header .site-title {
+    .hero-band .site-title {
       font-family: "Playfair Display", Georgia, serif;
-      font-size: 1.9rem;
+      font-size: 2rem;
       font-weight: 700;
-      color: var(--forest);
+      color: var(--hero-text);
       text-decoration: none;
-      display: inline-block;
+      display: block;
+      text-align: center;
+      padding-bottom: 18px;
     }
-    header.site-header .site-title:hover { color: var(--forest-dark); }
+    .hero-band .site-title:hover { color: var(--hero-text); opacity: 0.85; }
 
     nav.site-nav {
       display: flex;
-      gap: 6px;
+      gap: 4px;
       flex-wrap: wrap;
+      justify-content: center;
       padding: 10px 0;
-      margin-bottom: 28px;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
     }
     nav.site-nav a {
-      color: var(--forest);
+      color: var(--hero-text);
       text-decoration: none;
       font-weight: 700;
-      padding: 8px 12px;
-      border-radius: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
     }
-    nav.site-nav a:hover { background: var(--bg-alt); }
+    nav.site-nav a:hover,
+    nav.site-nav a:focus-visible {
+      background: rgba(255, 255, 255, 0.16);
+    }
+    nav.site-nav a:focus-visible { outline-color: var(--hero-text); }
 
+    main { padding: 32px 0 60px; }
     main :first-child { margin-top: 0; }
+
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 26px;
+      box-shadow: 0 2px 10px rgba(27, 67, 50, 0.08);
+    }
+    .cta-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .button {
+      display: inline-block;
+      background: var(--forest);
+      color: var(--hero-text);
+      font-weight: 700;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+    }
+    .button:hover, .button:focus-visible { background: var(--forest-dark); color: var(--hero-text); }
 
     .post-list { list-style: none; padding: 0; }
     .post-list li {
@@ -117,9 +150,19 @@
       background: var(--bg-alt);
       border-radius: 8px;
       border: 1px solid var(--border);
+      border-left: 4px solid var(--forest);
     }
     .post-list a { font-weight: 700; }
     .post-date { color: var(--muted); font-size: 0.85rem; margin-right: 8px; }
+    .post-tags {
+      display: block;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
     .cancelled { color: var(--cancelled); font-weight: 700; }
 
     blockquote {
@@ -134,7 +177,7 @@
 
     footer.site-footer {
       margin-top: 48px;
-      padding-top: 18px;
+      padding: 18px 0;
       border-top: 1px solid var(--border);
       color: var(--muted);
       font-size: 0.9rem;
@@ -144,26 +187,29 @@
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <header class="site-header">
-    <a class="site-title" href="{{ get_url(path="@/_index.md") }}">{{ config.title }}</a>
-  </header>
+  <div class="hero-band">
+    <div class="container">
+      <a class="site-title" href="{{ get_url(path="@/_index.md") }}">{{ config.title }}</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="{{ get_url(path="@/_index.md") }}">Home</a>
+        <a href="{{ get_url(path="@/about/_index.md") }}">About</a>
+        <a href="{{ get_url(path="@/biodiversity/_index.md") }}">Biodiversity</a>
+        <a href="{{ get_url(path="@/plant-safari/_index.md") }}">Plant Safari</a>
+        <a href="{{ get_url(path="@/events/_index.md") }}">Events</a>
+        <a href="{{ get_url(path="@/blog/_index.md") }}">Blog</a>
+        <a href="{{ get_url(path="@/news/_index.md") }}">News</a>
+      </nav>
+    </div>
+  </div>
 
-  <nav class="site-nav" aria-label="Main">
-    <a href="{{ get_url(path="@/_index.md") }}">Home</a>
-    <a href="{{ get_url(path="@/about/_index.md") }}">About</a>
-    <a href="{{ get_url(path="@/biodiversity/_index.md") }}">Biodiversity</a>
-    <a href="{{ get_url(path="@/plant-safari/_index.md") }}">Plant Safari</a>
-    <a href="{{ get_url(path="@/events/_index.md") }}">Events</a>
-    <a href="{{ get_url(path="@/blog/_index.md") }}">Blog</a>
-    <a href="{{ get_url(path="@/news/_index.md") }}">News</a>
-  </nav>
+  <div class="container">
+    <main id="main-content">
+      {% block content %}{% endblock content %}
+    </main>
 
-  <main id="main-content">
-    {% block content %}{% endblock content %}
-  </main>
-
-  <footer class="site-footer">
-    Easthampton BEES Committee
-  </footer>
+    <footer class="site-footer">
+      Easthampton BEES Committee
+    </footer>
+  </div>
 </body>
 </html>

@@ -2,7 +2,20 @@
 
 {% block content %}
 <h1>{{ section.title }}</h1>
-{{ section.content | safe }}
+
+{#- The card + any call-to-action buttons are entirely template-driven so
+   content authors only ever write plain markdown, never HTML. Buttons come
+   from [[extra.cta_links]] (label/url pairs) in this page's frontmatter. #}
+<div class="card">
+  {{ section.content | safe }}
+  {% if section.extra.cta_links %}
+  <div class="cta-row">
+    {% for cta in section.extra.cta_links %}
+    <a class="button" href="{{ cta.url }}">{{ cta.label }}</a>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
 
 <h2>Recent posts</h2>
 <ul class="post-list">
@@ -10,6 +23,7 @@
   {% for page in blog.pages %}
     {% if loop.index <= 3 %}
     <li>
+      {% if page.taxonomies.tags %}<span class="post-tags">{{ page.taxonomies.tags | join(sep=", ") }}</span>{% endif %}
       <a href="{{ page.permalink }}">{{ page.title }}</a>
       <span class="post-date">{{ page.date }}</span>
     </li>
