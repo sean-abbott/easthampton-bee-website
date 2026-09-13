@@ -4,22 +4,151 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 0 20px 60px; color: #222; }
-    nav { display: flex; gap: 16px; flex-wrap: wrap; padding: 16px 0; border-bottom: 1px solid #ddd; margin-bottom: 24px; }
-    nav a { color: #235E70; text-decoration: none; font-weight: bold; }
-    nav a:hover { text-decoration: underline; }
-    h1 { margin-top: 0; }
+    :root {
+      color-scheme: light dark;
+      --bg: #fbfbf7;
+      --bg-alt: #eef3ea;
+      --text: #1a231d;
+      --muted: #4b5850;
+      --forest: #1b4332;
+      --forest-dark: #123024;
+      --earth: #6b4226;
+      --border: #c9d6c3;
+      --cancelled: #8b2e2e;
+      --focus-ring: #1b4332;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #11150f;
+        --bg-alt: #1b2318;
+        --text: #e3eae0;
+        --muted: #a9b8ac;
+        --forest: #8fd9b6;
+        --forest-dark: #b7ecd2;
+        --earth: #d9b866;
+        --border: #33402d;
+        --cancelled: #e59a9a;
+        --focus-ring: #8fd9b6;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { font-size: 100%; }
+    body {
+      font-family: "Nunito", Arial, sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+      background: var(--bg);
+      color: var(--text);
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: "Playfair Display", Georgia, serif;
+      color: var(--forest);
+      line-height: 1.25;
+    }
+    h1 { margin-top: 0.6em; }
+
+    a { color: var(--forest); }
+    a:hover { color: var(--forest-dark); }
+    :focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 2px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: var(--bg);
+      color: var(--forest);
+      padding: 10px 16px;
+      z-index: 100;
+      border: 2px solid var(--forest);
+    }
+    .skip-link:focus {
+      left: 12px;
+      top: 12px;
+    }
+
+    header.site-header {
+      padding: 28px 0 10px;
+    }
+    header.site-header .site-title {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--forest);
+      text-decoration: none;
+      display: inline-block;
+    }
+    header.site-header .site-title:hover { color: var(--forest-dark); }
+
+    nav.site-nav {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      padding: 10px 0;
+      margin-bottom: 28px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    nav.site-nav a {
+      color: var(--forest);
+      text-decoration: none;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+    nav.site-nav a:hover { background: var(--bg-alt); }
+
+    main :first-child { margin-top: 0; }
+
     .post-list { list-style: none; padding: 0; }
-    .post-list li { margin-bottom: 14px; }
-    .post-date { color: #666; font-size: 13px; }
-    .cancelled { color: #b00; font-weight: bold; }
-    img { max-width: 100%; height: auto; }
-    footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #ddd; color: #666; font-size: 13px; }
+    .post-list li {
+      margin-bottom: 14px;
+      padding: 10px 14px;
+      background: var(--bg-alt);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .post-list a { font-weight: 700; }
+    .post-date { color: var(--muted); font-size: 0.85rem; margin-right: 8px; }
+    .cancelled { color: var(--cancelled); font-weight: 700; }
+
+    blockquote {
+      margin: 1.5em 0;
+      padding: 0.6em 1.2em;
+      border-left: 4px solid var(--earth);
+      background: var(--bg-alt);
+      font-style: italic;
+    }
+
+    img { max-width: 100%; height: auto; border-radius: 6px; }
+
+    footer.site-footer {
+      margin-top: 48px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
-  <nav>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <a class="site-title" href="{{ get_url(path="@/_index.md") }}">{{ config.title }}</a>
+  </header>
+
+  <nav class="site-nav" aria-label="Main">
     <a href="{{ get_url(path="@/_index.md") }}">Home</a>
     <a href="{{ get_url(path="@/about/_index.md") }}">About</a>
     <a href="{{ get_url(path="@/biodiversity/_index.md") }}">Biodiversity</a>
@@ -29,9 +158,11 @@
     <a href="{{ get_url(path="@/news/_index.md") }}">News</a>
   </nav>
 
-  {% block content %}{% endblock content %}
+  <main id="main-content">
+    {% block content %}{% endblock content %}
+  </main>
 
-  <footer>
+  <footer class="site-footer">
     Easthampton BEES Committee
   </footer>
 </body>
