@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ section.title }}</h1>
+{{ section.content | safe }}
+
+<h2>Recent posts</h2>
+<ul class="post-list">
+  {% set blog = get_section(path="blog/_index.md") %}
+  {% for page in blog.pages %}
+    {% if loop.index <= 3 %}
+    <li>
+      <a href="{{ page.permalink }}">{{ page.title }}</a>
+      <span class="post-date">{{ page.date }}</span>
+    </li>
+    {% endif %}
+  {% endfor %}
+</ul>
+{% endblock content %}

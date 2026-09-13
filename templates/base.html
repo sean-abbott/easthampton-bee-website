@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 0 20px 60px; color: #222; }
+    nav { display: flex; gap: 16px; flex-wrap: wrap; padding: 16px 0; border-bottom: 1px solid #ddd; margin-bottom: 24px; }
+    nav a { color: #235E70; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    h1 { margin-top: 0; }
+    .post-list { list-style: none; padding: 0; }
+    .post-list li { margin-bottom: 14px; }
+    .post-date { color: #666; font-size: 13px; }
+    .cancelled { color: #b00; font-weight: bold; }
+    img { max-width: 100%; height: auto; }
+    footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #ddd; color: #666; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="{{ get_url(path="@/_index.md") }}">Home</a>
+    <a href="{{ get_url(path="@/about/_index.md") }}">About</a>
+    <a href="{{ get_url(path="@/biodiversity/_index.md") }}">Biodiversity</a>
+    <a href="{{ get_url(path="@/plant-safari/_index.md") }}">Plant Safari</a>
+    <a href="{{ get_url(path="@/events/_index.md") }}">Events</a>
+    <a href="{{ get_url(path="@/blog/_index.md") }}">Blog</a>
+    <a href="{{ get_url(path="@/news/_index.md") }}">News</a>
+  </nav>
+
+  {% block content %}{% endblock content %}
+
+  <footer>
+    Easthampton BEES Committee
+  </footer>
+</body>
+</html>

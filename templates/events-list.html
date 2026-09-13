@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Events - {{ config.title }}{% endblock title %}
+
+{% block content %}
+<h1>Events</h1>
+{{ section.content | safe }}
+
+{#- Any post tagged "event" shows up here automatically - no page to hand-maintain.
+   Every "event"-tagged post must set extra.event_date, or this sort breaks. #}
+{% set term = get_taxonomy_term(kind="tags", term="event") %}
+{% set events = term.pages | sort(attribute="extra.event_date") | reverse %}
+
+<ul class="post-list">
+  {% for page in events %}
+  <li>
+    <span class="post-date">{{ page.extra.event_date }}</span>
+    <a href="{{ page.permalink }}">{{ page.title }}</a>
+    {% if page.extra.event_cancelled %}<span class="cancelled">CANCELED</span>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+
+<p><a href="{{ get_url(path="@/events/calendar.md") }}">View as calendar</a></p>
+{% endblock content %}

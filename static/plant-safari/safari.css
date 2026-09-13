@@ -1,0 +1,209 @@
+#inat-safari #place-select {
+    font-size: 16px;
+    padding: 8px 12px;
+    margin: 10px 0 25px;
+    min-width: 300px;
+    max-width: stretch;
+}
+
+#inat-safari label {
+    font-weight: bold;
+}
+
+#inat-safari #taxa {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+#inat-safari .taxon-card {
+    background: #ffffff;
+    border: 1px solid #323232;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+#inat-safari .taxon-card h2 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+#inat-safari .scientific-name {
+    font-style: italic;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+#inat-safari .native-status {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+#inat-safari .resources h3 {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+#inat-safari .resources ul {
+    margin-top: 5px;
+    padding-left: 25px;
+}
+
+#inat-safari .resources li {
+    margin-bottom: 5px;
+}
+
+#inat-safari .photos {
+    margin-top: 20px;
+}
+
+#inat-safari .photos h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+#inat-safari .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+#inat-safari .photo {
+    min-width: 0;
+}
+
+#inat-safari .photo a {
+    display: block;
+}
+
+#inat-safari .photo img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#inat-safari .attribution {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+    line-height: 1.3;
+    color: #323232;
+}
+
+#inat-safari .attribution a {
+    color: inherit;
+}
+
+@media (max-width: 700px) {
+    #inat-safari #taxa {
+        grid-template-columns: 1fr;
+    }
+}
+
+#inat-safari #place-subtitle h2 {
+    margin-top: -10px;
+    margin-bottom: 4px;
+    font-size: 22px;
+    font-weight: normal;
+    color: #323232;
+}
+
+#inat-safari .place-link {
+    margin-bottom: 25px;
+    font-size: 13px;
+}
+
+#inat-safari .place-link a {
+    color: #323232;
+}
+
+#help-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #323232;
+    color: #ffffff;
+
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 40px;
+
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#help-button:hover {
+    background: #000000;
+}
+
+#instructions-modal.modal {
+    display: none;
+
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.5);
+
+    align-items: center;
+    justify-content: center;
+}
+
+#instructions-modal.modal.show {
+    display: flex;
+}
+
+#instructions-modal .modal-content {
+    position: relative;
+
+    width: 90%;
+    max-width: 600px;
+
+    padding: 30px;
+
+    background: #ffffff;
+    border-radius: 10px;
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+#instructions-modal .modal-content h2 {
+    margin-top: 0;
+}
+
+#instructions-modal .modal-content p {
+    line-height: 1.6;
+}
+
+#instructions-modal .close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+
+    border: none;
+    background: none;
+
+    font-size: 30px;
+    color: #323232;
+
+    cursor: pointer;
+}
+
+#instructions-modal .close-button:hover {
+    color: #000000;
+}

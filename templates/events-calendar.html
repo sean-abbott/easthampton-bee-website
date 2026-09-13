@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Events Calendar - {{ config.title }}{% endblock title %}
+
+{% block content %}
+<h1>Events Calendar</h1>
+{{ page.content | safe }}
+
+{#- Rough first pass: grouped-by-month list, not a real grid calendar yet.
+   Same underlying "event"-tagged posts as /events/. #}
+{% set term = get_taxonomy_term(kind="tags", term="event") %}
+{% set events = term.pages | sort(attribute="extra.event_date") %}
+
+{% set_global current_month = "" %}
+{% for item in events %}
+  {% set month = item.extra.event_date | date(format="%B %Y") %}
+  {% if month != current_month %}
+    {% if not loop.first %}</ul>{% endif %}
+    <h2>{{ month }}</h2>
+    <ul class="post-list">
+    {% set_global current_month = month %}
+  {% endif %}
+  <li>
+    {{ item.extra.event_date | date(format="%b %d") }} -
+    <a href="{{ item.permalink }}">{{ item.title }}</a>
+    {% if item.extra.event_cancelled %}<span class="cancelled">CANCELED</span>{% endif %}
+  </li>
+  {% if loop.last %}</ul>{% endif %}
+{% endfor %}
+
+<p><a href="{{ get_url(path="@/events/_index.md") }}">View as list</a></p>
+{% endblock content %}

@@ -1,0 +1,8 @@
+base_url = "https://easthamptonbees.org"
+title = "Easthampton MA Biodiversity, Environment, and Ecological Sustainability (BEES)"
+compile_sass = false
+build_search_index = false
+
+taxonomies = [
+    { name = "tags", render = false },
+]
