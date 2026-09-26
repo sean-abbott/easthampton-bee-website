@@ -14,9 +14,14 @@ templates would just move to `themes/<name>/templates/` and get a
 # Deployment
 
 Deployed to Cloudflare (Workers static-assets flow — `wrangler.toml` in this
-repo declares the static output, no Worker script). Staging URL is not the
-real `easthamptonbees.org` domain yet — that stays on the existing
-WordPress site until there's a real cutover decision.
+repo declares the static output, no Worker script). **Merging to `main` and
+pushing auto-deploys** — Cloudflare's git integration (Workers Builds)
+watches this repo's `main` branch directly and rebuilds/publishes on every
+push (confirmed against the Cloudflare dashboard's Deployments tab). No
+local `wrangler` command is needed for a normal publish - just get the
+change onto `main`. Staging URL is not the real `easthamptonbees.org` domain
+yet — that stays on the existing WordPress site until there's a real
+cutover decision.
 
 # Structure
 
