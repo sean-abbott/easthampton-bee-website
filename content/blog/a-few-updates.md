@@ -14,3 +14,10 @@ Second, the next Coffee and Removal party is coming up! We won't be doing remova
 Second, on March 7th, 2026, between 11am and 2pm, members of the BEES Committee will be at the Easthampton Library Annex, at 52 main street, to just chat and share our experiences!  Come talk about lawn removal, native plants, or anything else sustainability related!
 
 <figure class="wp-block-image size-large"><img alt="" class="wp-image-180" src="https://i0.wp.com/easthamptonbees.org/wp-content/uploads/2026/01/energy-sustainability-flyer.png?fit=819%2C1024&amp;ssl=1"/></figure>
+
+
+![947](https://easthamptonbees-images.houseofthesol.com/images/1790437210141-947.jpg)
+
+
+
+
