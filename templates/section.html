@@ -12,7 +12,7 @@
   <li>
     {% if page.taxonomies.tags %}<span class="post-tags">{{ page.taxonomies.tags | join(sep=", ") }}</span>{% endif %}
     <a href="{{ page.permalink }}">{{ page.title }}</a>
-    <span class="post-date">{{ page.date }}</span>
+    {% if page.date %}<span class="post-date">{{ page.date }}</span>{% endif %}
   </li>
   {% endfor %}
 </ul>

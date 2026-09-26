@@ -13,17 +13,10 @@ templates would just move to `themes/<name>/templates/` and get a
 
 # Deployment
 
-Staging deploy: **bees-static.houseofthesol.com**, via Cloudflare Pages **git
-integration** (connected directly to this GitHub repo - Cloudflare's own
-build infrastructure runs `zola build` on every push, no local tooling,
-no wrangler, nothing to run here). Setup process/account context:
-`~/projects/pws/documentation/cloudflare-pages-setup.md`.
-
-**Not on easthamptonbees.org yet.** The real domain stays on the existing
-Bluehost/WordPress site for now - another person owns that domain, so moving
-it will need DNS coordination whenever the team decides to cut over. When
-that happens: update `base_url` in `config.toml` and set up the real domain
-as a Cloudflare Pages custom domain (same process as the staging subdomain).
+Deployed to Cloudflare (Workers static-assets flow — `wrangler.toml` in this
+repo declares the static output, no Worker script). Staging URL is not the
+real `easthamptonbees.org` domain yet — that stays on the existing
+WordPress site until there's a real cutover decision.
 
 # Structure
 
