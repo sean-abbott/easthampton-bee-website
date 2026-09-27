@@ -10,3 +10,15 @@ build_search_index = false
 taxonomies = [
     { name = "tags", render = false },
 ]
+
+[[extra.menu]]
+name = "About"
+url = "@/about/_index.md"
+
+[[extra.menu]]
+name = "Biodiversity"
+url = "@/biodiversity/_index.md"
+
+[[extra.menu]]
+name = "weee"
+url = "@/about/dave-test.md"
