@@ -122,6 +122,11 @@
 
     main { padding: 32px 0 60px; }
     main :first-child { margin-top: 0; }
+    /* A right/left-floated image (beedance-ssg-editor's image-alignment
+       feature) taller than the text next to it otherwise visually escapes
+       past main's bottom edge, since nothing clears the float before the
+       footer renders. */
+    main::after { content: ""; display: table; clear: both; }
 
     .card {
       background: var(--bg);

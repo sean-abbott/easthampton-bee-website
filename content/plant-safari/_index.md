@@ -1,5 +1,8 @@
 +++
 title = "Plant Safari"
+
+[extra]
+heading_kind = "widget"
 +++
 
 <link href="/plant-safari/safari.css" rel="stylesheet"/>
