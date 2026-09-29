@@ -22,3 +22,11 @@ url = "@/biodiversity/_index.md"
 [[extra.menu]]
 name = "weee"
 url = "@/about/dave-test.md"
+
+[[extra.menu]]
+name = "Insects"
+url = "@/biodiversity/insects.md"
+
+[[extra.menu]]
+name = "asdf"
+url = "https://bees.org"

@@ -30,4 +30,9 @@
     {% endif %}
   {% endfor %}
 </ul>
+
+{% for m in config.extra.menu %}
+{{m}}
+{% endfor %}
+
 {% endblock content %}
