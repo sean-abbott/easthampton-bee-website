@@ -191,13 +191,9 @@
     <div class="container">
       <a class="site-title" href="{{ get_url(path="@/_index.md") }}">{{ config.title }}</a>
       <nav class="site-nav" aria-label="Main">
-        <a href="{{ get_url(path="@/_index.md") }}">Home</a>
-        <a href="{{ get_url(path="@/about/_index.md") }}">About</a>
-        <a href="{{ get_url(path="@/biodiversity/_index.md") }}">Biodiversity</a>
-        <a href="{{ get_url(path="@/plant-safari/_index.md") }}">Plant Safari</a>
-        <a href="{{ get_url(path="@/events/_index.md") }}">Events</a>
-        <a href="{{ get_url(path="@/blog/_index.md") }}">Blog</a>
-        <a href="{{ get_url(path="@/news/_index.md") }}">News</a>
+        {% for menu_item in config.extra.menu %}
+        <a href="{{ get_url(path=menu_item.url) }}">{{ menu_item.name }}</a>
+        {% endfor %}
       </nav>
     </div>
   </div>
