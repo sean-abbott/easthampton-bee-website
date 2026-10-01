@@ -10,3 +10,39 @@ build_search_index = false
 taxonomies = [
     { name = "tags", render = false },
 ]
+
+# Main nav (templates/base.html), read in file order - top to bottom is
+# left to right. `name`/`url` match the Abridge theme's own [[extra.menu]]
+# convention (see themes/abridge/templates/base.html in beedance-ssg-editor's
+# bundled sample site) for consistency, even though this site doesn't use
+# that theme - `url` here is a content-relative "@/path/_index.md" reference
+# (resolved through Zola's own get_url(), same as every other internal link
+# in this site's templates) rather than a hand-typed path that could drift
+# from the real page path; an absolute http(s):// URL is also supported.
+[[extra.menu]]
+name = "Home"
+url = "@/_index.md"
+
+[[extra.menu]]
+name = "About"
+url = "@/about/_index.md"
+
+[[extra.menu]]
+name = "Biodiversity"
+url = "@/biodiversity/_index.md"
+
+[[extra.menu]]
+name = "Plant Safari"
+url = "@/plant-safari/_index.md"
+
+[[extra.menu]]
+name = "Events"
+url = "@/events/_index.md"
+
+[[extra.menu]]
+name = "Blog"
+url = "@/blog/_index.md"
+
+[[extra.menu]]
+name = "News"
+url = "@/news/_index.md"
